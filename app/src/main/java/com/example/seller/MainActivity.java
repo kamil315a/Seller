@@ -42,22 +42,22 @@ class MainActivity extends AppCompatActivity {
         btnConfirm  = findViewById(R.id.btnConfirm);
 
 
-        btnConfirm.setOnClickListener(new View.OnClickListener() {
+/*        btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public
             void onClick(View view)
-                /*{
+                *//*{
                 try {
                     openLoginFragment();
                 } catch (Exception e) {
                     System.out.println("Intent Crash");
                 }
 
-                }*/
+                }*//*
             {
-                openLoginFragment();
+            openLoginFragment();
             }
-        });
+        });*/
 
 
         }
