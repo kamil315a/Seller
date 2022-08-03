@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Seller</string>
+    <string name="nickname">nickname</string>
+    <string name="email">email</string>
 </resources>
