@@ -20,15 +20,7 @@ class MainActivity extends AppCompatActivity {
     EditText edtNickname, edtEmail;
     Button btnConfirm;
 
-    void openLoginFragment()
-        {
 
-        Fragment mFragment = null;
-        mFragment = new LoginFragment();
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.frameLayout, mFragment).commit();
-        }
 
     @Override
     protected
@@ -42,22 +34,17 @@ class MainActivity extends AppCompatActivity {
         btnConfirm  = findViewById(R.id.btnConfirm);
 
 
-/*        btnConfirm.setOnClickListener(new View.OnClickListener() {
+        btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public
             void onClick(View view)
-                *//*{
-                try {
-                    openLoginFragment();
-                } catch (Exception e) {
-                    System.out.println("Intent Crash");
+                {
+
                 }
 
-                }*//*
-            {
-            openLoginFragment();
-            }
-        });*/
+
+
+        });
 
 
         }
