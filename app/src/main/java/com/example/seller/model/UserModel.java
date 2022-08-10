@@ -4,52 +4,81 @@ import com.google.gson.annotations.SerializedName;
 
 public
 class UserModel {
-    @SerializedName("id")
-    private String id;
-    @SerializedName("title")
-    private String title;
-    @SerializedName("brief")
-    private String brief;
-    @SerializedName("filesource")
-    private String fileSource;
 
-    public UserModel(String id, String title, String brief, String fileSource) {
-    this.id = id;
-    this.title = title;
-    this.brief = brief;
-    this.fileSource = fileSource;
-    }
+    @SerializedName("userId")
+    private String userId;
+    @SerializedName("firstname")
+    private String firstname;
+    @SerializedName("lastname")
+    private String lastname;
+    @SerializedName("userEmail")
+    private String userEmail;
+    @SerializedName("userZipcode")
+    private String userZipcode;
 
-    public String getId() {
-    return id;
-    }
 
-    public void setId(String id) {
-    this.id = id;
-    }
+    public
+    String getUserId()
+        {
+        return userId;
+        }
 
-    public String getTitle() {
-    return title;
-    }
+    public
+    void setUserId(String userId)
+        {
+        this.userId = userId;
+        }
 
-    public void setTitle(String title) {
-    this.title = title;
-    }
+    public
+    String getFirstname()
+        {
+        return firstname;
+        }
 
-    public String getBrief() {
-    return brief;
-    }
+    public
+    void setFirstname(String firstname)
+        {
+        this.firstname = firstname;
+        }
 
-    public void setBrief(String brief) {
-    this.brief = brief;
-    }
+    public
+    String getLastname()
+        {
+        return lastname;
+        }
 
-    public String getFileSource() {
-    return fileSource;
-    }
+    public
+    void setLastname(String lastname)
+        {
+        this.lastname = lastname;
+        }
 
-    public void setFileSource(String fileSource) {
-    this.fileSource = fileSource;
-    }
+    public
+    String getUserEmail()
+        {
+        return userEmail;
+        }
+
+    public
+    void setUserEmail(String userEmail)
+        {
+        this.userEmail = userEmail;
+        }
+
+    public
+    String getUserZipcode()
+        {
+        return userZipcode;
+        }
+
+    public
+    void setUserZipcode(String userZipcode)
+        {
+        this.userZipcode = userZipcode;
+        }
+
+
+
+
 
 }

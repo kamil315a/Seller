@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.seller.R;
+import com.example.seller.network.RetrofitInstance;
 
 public
 class MainActivity extends AppCompatActivity {
@@ -35,7 +36,7 @@ class MainActivity extends AppCompatActivity {
             void onClick(View view)
                 {
                     edtNickname.getText().toString();
-
+                    RetrofitInstance retrofitInstance;
                 }
 
 
