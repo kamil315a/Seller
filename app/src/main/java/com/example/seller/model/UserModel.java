@@ -78,7 +78,16 @@ class UserModel {
         }
 
 
-
-
-
+    @Override
+    public
+    String toString()
+        {
+        return "UserModel{" +
+               "userId='" + userId + '\'' +
+               ", firstname='" + firstname + '\'' +
+               ", lastname='" + lastname + '\'' +
+               ", userEmail='" + userEmail + '\'' +
+               ", userZipcode='" + userZipcode + '\'' +
+               '}';
+        }
 }

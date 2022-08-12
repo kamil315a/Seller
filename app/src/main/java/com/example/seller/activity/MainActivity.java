@@ -25,7 +25,7 @@ class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        edtNickname = findViewById(R.id.edtNickname);
+        edtNickname = findViewById(R.id.edtFirstName);
         edtEmail    = findViewById(R.id.edtEmail);
         btnConfirm  = findViewById(R.id.btnConfirm);
 
@@ -36,7 +36,7 @@ class MainActivity extends AppCompatActivity {
             void onClick(View view)
                 {
                     edtNickname.getText().toString();
-                    RetrofitInstance retrofitInstance;
+
                 }
 
 

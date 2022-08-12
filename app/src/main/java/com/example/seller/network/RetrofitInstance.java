@@ -8,18 +8,18 @@ class RetrofitInstance {
 
     private static final String BASE_URL = "http://localhost/";
 
-    private Retrofit retrofit;
+    private static Retrofit retrofit;
 
-    {
-        retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-    }
-
-    public
+    public static
     Retrofit getRetrofit()
         {
+        if (retrofit == null)
+            retrofit = new Retrofit.Builder()
+                    .baseUrl(BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
         return retrofit;
         }
+
+
 }
