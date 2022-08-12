@@ -8,15 +8,15 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.seller.R;
+import com.example.seller.my_interface.DataBaseService;
 import com.example.seller.network.RetrofitInstance;
 
 public
 class MainActivity extends AppCompatActivity {
 
+
     EditText edtFirstName, edtLastName, edtEmail , edtZipCode;
     Button btnConfirm;
-
-
 
     @Override
     protected
@@ -31,14 +31,13 @@ class MainActivity extends AppCompatActivity {
         edtZipCode  = findViewById(R.id.edtZipCode);
         btnConfirm  = findViewById(R.id.btnConfirm);
 
-
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public
             void onClick(View view)
                 {
 
-
+                DataBaseService dataBaseService = RetrofitInstance.getRetrofit().create(DataBaseService.class);
 
                 }
 
