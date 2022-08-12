@@ -13,7 +13,7 @@ import com.example.seller.network.RetrofitInstance;
 public
 class MainActivity extends AppCompatActivity {
 
-    EditText edtNickname, edtEmail;
+    EditText edtFirstName, edtLastName, edtEmail , edtZipCode;
     Button btnConfirm;
 
 
@@ -25,8 +25,10 @@ class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        edtNickname = findViewById(R.id.edtFirstName);
+        edtFirstName = findViewById(R.id.edtFirstName);
+        edtLastName = findViewById(R.id.edtLastName);
         edtEmail    = findViewById(R.id.edtEmail);
+        edtZipCode  = findViewById(R.id.edtZipCode);
         btnConfirm  = findViewById(R.id.btnConfirm);
 
 
@@ -35,7 +37,8 @@ class MainActivity extends AppCompatActivity {
             public
             void onClick(View view)
                 {
-                    edtNickname.getText().toString();
+
+
 
                 }
 

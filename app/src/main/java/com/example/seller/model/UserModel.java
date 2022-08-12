@@ -14,7 +14,7 @@ class UserModel {
     @SerializedName("userEmail")
     private String userEmail;
     @SerializedName("userZipcode")
-    private String userZipcode;
+    private Integer userZipcode;
 
 
     public
@@ -66,13 +66,13 @@ class UserModel {
         }
 
     public
-    String getUserZipcode()
+    Integer getUserZipcode()
         {
         return userZipcode;
         }
 
     public
-    void setUserZipcode(String userZipcode)
+    void setUserZipcode(Integer userZipcode)
         {
         this.userZipcode = userZipcode;
         }
