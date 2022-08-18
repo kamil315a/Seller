@@ -10,7 +10,7 @@ class RetrofitInstance {
 
     private static final String BASE_URL = "http://localhost/";
 
-    private static Retrofit retrofit;
+    private static Retrofit retrofit = null;
 
     public static
     Retrofit getRetrofit()

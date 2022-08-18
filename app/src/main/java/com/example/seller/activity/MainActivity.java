@@ -16,6 +16,8 @@ import com.example.seller.network.RetrofitInstance;
 
 import java.io.IOException;
 
+import retrofit2.Call;
+import retrofit2.CallAdapter;
 import retrofit2.Response;
 
 public
@@ -46,9 +48,10 @@ class MainActivity extends AppCompatActivity {
             public
             void onClick(View view)
                 {
-
                 DataBaseService dataBaseService = RetrofitInstance.getRetrofit().create(DataBaseService.class);
-                try {
+
+
+/*                try {
                     Toast.makeText(MainActivity.this, ""+edtZipCode, Toast.LENGTH_SHORT).show();
                     Log.d("edtZipCode", "wywalilo");
                     Response<UserModel> userModelResponse = dataBaseService.createUser(edtFirstName.getText().toString(),
@@ -57,8 +60,12 @@ class MainActivity extends AppCompatActivity {
                             Integer.parseInt(edtZipCode.getText().toString())).execute();
                 } catch (IOException e) {
                     e.printStackTrace();
+                }*/
+
+
+
                 }
-                }
+
 
 
 
