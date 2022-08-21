@@ -15,20 +15,27 @@ import com.example.seller.my_interface.DataBaseService;
 import com.example.seller.network.RetrofitInstance;
 
 import java.io.IOException;
+import java.lang.invoke.MethodHandle;
+import java.lang.reflect.Method;
 
+import okhttp3.Request;
+import okio.Timeout;
 import retrofit2.Call;
 import retrofit2.CallAdapter;
+import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.http.PUT;
 
 public
 class MainActivity extends AppCompatActivity {
 
 
-    EditText edtFirstName;
-    EditText edtLastName;
-    EditText edtEmail;
-    EditText edtZipCode;
-    Button btnConfirm;
+    EditText edtFirstName = null;
+    EditText edtLastName = null;
+    EditText edtEmail = null;
+    EditText edtZipCode = null;
+    Button btnConfirm = null;
 
     @Override
     protected
@@ -43,11 +50,13 @@ class MainActivity extends AppCompatActivity {
         edtZipCode  = findViewById(R.id.edtZipCode);
         btnConfirm  = findViewById(R.id.btnConfirm);
 
+
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public
             void onClick(View view)
                 {
+
                 DataBaseService dataBaseService = RetrofitInstance.getRetrofit().create(DataBaseService.class);
 
 
@@ -62,7 +71,29 @@ class MainActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }*/
 
+                Call<UserModel> call = dataBaseService.createUser(
+                        edtFirstName.getText().toString(),
+                        edtLastName.getText().toString(),
+                        edtEmail.getText().toString(),
+                        Integer.valueOf(edtZipCode.getText().toString()));
 
+                call.enqueue(new Callback<UserModel>() {
+                    @Override
+                    public
+                    void onResponse(Call<UserModel> call, Response<UserModel> response)
+                        {
+
+                            Toast.makeText(MainActivity.this, "onResponse code: " + response.code(), Toast.LENGTH_SHORT).show();
+
+                        }
+
+                    @Override
+                    public
+                    void onFailure(Call<UserModel> call, Throwable t)
+                        {
+                        Toast.makeText(MainActivity.this, "onFailure message: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                });
 
                 }
 
