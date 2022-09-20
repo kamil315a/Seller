@@ -17,6 +17,8 @@ import com.example.seller.network.RetrofitInstance;
 import java.io.IOException;
 import java.lang.invoke.MethodHandle;
 import java.lang.reflect.Method;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import okhttp3.Request;
 import okio.Timeout;
@@ -31,11 +33,21 @@ public
 class MainActivity extends AppCompatActivity {
 
 
+
     EditText edtFirstName = null;
     EditText edtLastName = null;
     EditText edtEmail = null;
     EditText edtZipCode = null;
     Button btnConfirm = null;
+
+    private boolean validateZipCode(){
+
+        if(edtZipCode.getText().toString().isEmpty()){
+            edtZipCode.setError("Field can't be empty");
+        }
+
+        return true;
+    };
 
     @Override
     protected
@@ -50,6 +62,13 @@ class MainActivity extends AppCompatActivity {
         edtZipCode  = findViewById(R.id.edtZipCode);
         btnConfirm  = findViewById(R.id.btnConfirm);
 
+
+
+
+        final String zipCodeValidationRegex = "^\\d{5}$";
+        Pattern pattern = Pattern.compile(zipCodeValidationRegex);
+        Matcher matcher = pattern.matcher(edtZipCode.getText().toString());
+        validateZipCode();
 
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,6 +89,7 @@ class MainActivity extends AppCompatActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }*/
+                //INPUT VALIDATION NEEDED
 
                 Call<UserModel> call = dataBaseService.createUser(
                         edtFirstName.getText().toString(),
@@ -94,14 +114,7 @@ class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "onFailure message: " + t.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                 });
-
                 }
-
-
-
-
         });
-
-
         }
 }
