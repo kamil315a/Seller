@@ -3,64 +3,50 @@ package com.example.seller.activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.seller.R;
+import com.example.seller.databinding.ActivityMainBinding;
 import com.example.seller.model.UserModel;
 import com.example.seller.my_interface.DataBaseService;
 import com.example.seller.network.RetrofitInstance;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
-import java.io.IOException;
-import java.lang.invoke.MethodHandle;
-import java.lang.reflect.Method;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import okhttp3.Request;
-import okio.Timeout;
 import retrofit2.Call;
-import retrofit2.CallAdapter;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.http.PUT;
 
 public
 class MainActivity extends AppCompatActivity {
 
+    private ActivityMainBinding binding;
 
-
-    EditText edtFirstName = null;
-    EditText edtLastName = null;
-    EditText edtEmail = null;
-    EditText edtZipCode = null;
+    TextInputEditText edtFirstName = null;
+    TextInputEditText edtLastName  = null;
+    TextInputEditText edtEmail = null;
+    TextInputEditText edtZipCode = null;
     Button btnConfirm = null;
-
-    private boolean validateZipCode(){
-
-        if(edtZipCode.getText().toString().isEmpty()){
-            edtZipCode.setError("Field can't be empty");
-        }
-
-        return true;
-    };
 
     @Override
     protected
     void onCreate(Bundle savedInstanceState)
         {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
 
-        edtFirstName = findViewById(R.id.edtFirstName);
+/*        edtFirstName = findViewById(R.id.edtFirstName);
         edtLastName = findViewById(R.id.edtLastName);
         edtEmail    = findViewById(R.id.edtEmail);
         edtZipCode  = findViewById(R.id.edtZipCode);
-        btnConfirm  = findViewById(R.id.btnConfirm);
+        btnConfirm  = findViewById(R.id.btnConfirm);*/
 
 
 
@@ -68,7 +54,6 @@ class MainActivity extends AppCompatActivity {
         final String zipCodeValidationRegex = "^\\d{5}$";
         Pattern pattern = Pattern.compile(zipCodeValidationRegex);
         Matcher matcher = pattern.matcher(edtZipCode.getText().toString());
-        validateZipCode();
 
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override

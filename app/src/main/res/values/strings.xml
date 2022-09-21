@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Seller</string>
-    <string name="firstname">lastname</string>
+    <string name="firstname">firstname</string>
     <string name="lastname">lastname</string>
     <string name="zipcode">zipcode</string>
     <string name="email">email</string>
