@@ -16,6 +16,6 @@ interface DataBaseService {
     Call<UserModel> createUser(@Field("firstname") String firstname,
         @Field("lastname") String lastname,
         @Field("userEmail") String userEmail,
-        @Field("userZipcode") Integer userZipcode);
+        @Field("userZipcode") String userZipcode);
 
 }

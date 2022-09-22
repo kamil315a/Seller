@@ -15,6 +15,7 @@ import com.example.seller.network.RetrofitInstance;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -27,12 +28,6 @@ class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
 
-    TextInputEditText edtFirstName = null;
-    TextInputEditText edtLastName  = null;
-    TextInputEditText edtEmail = null;
-    TextInputEditText edtZipCode = null;
-    Button btnConfirm = null;
-
     @Override
     protected
     void onCreate(Bundle savedInstanceState)
@@ -42,20 +37,11 @@ class MainActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
-/*        edtFirstName = findViewById(R.id.edtFirstName);
-        edtLastName = findViewById(R.id.edtLastName);
-        edtEmail    = findViewById(R.id.edtEmail);
-        edtZipCode  = findViewById(R.id.edtZipCode);
-        btnConfirm  = findViewById(R.id.btnConfirm);*/
-
-
-
-
-        final String zipCodeValidationRegex = "^\\d{5}$";
+/*        final String zipCodeValidationRegex = "^\\d{5}$";
         Pattern pattern = Pattern.compile(zipCodeValidationRegex);
-        Matcher matcher = pattern.matcher(edtZipCode.getText().toString());
+        Matcher matcher = pattern.matcher(edtZipCode.getText().toString());*/
 
-        btnConfirm.setOnClickListener(new View.OnClickListener() {
+        binding.btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public
             void onClick(View view)
@@ -77,10 +63,10 @@ class MainActivity extends AppCompatActivity {
                 //INPUT VALIDATION NEEDED
 
                 Call<UserModel> call = dataBaseService.createUser(
-                        edtFirstName.getText().toString(),
-                        edtLastName.getText().toString(),
-                        edtEmail.getText().toString(),
-                        Integer.valueOf(edtZipCode.getText().toString()));
+                        Objects.requireNonNull(binding.edtFirstName.getText()).toString(),
+                        Objects.requireNonNull(binding.edtLastName.getText()).toString(),
+                        Objects.requireNonNull(binding.edtEmail.getText()).toString(),
+                        Objects.requireNonNull(binding.edtZipCode.getText()).toString());
 
                 call.enqueue(new Callback<UserModel>() {
                     @Override
