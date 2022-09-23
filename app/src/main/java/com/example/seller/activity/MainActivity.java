@@ -49,17 +49,6 @@ class MainActivity extends AppCompatActivity {
 
                 DataBaseService dataBaseService = RetrofitInstance.getRetrofit().create(DataBaseService.class);
 
-
-/*                try {
-                    Toast.makeText(MainActivity.this, ""+edtZipCode, Toast.LENGTH_SHORT).show();
-                    Log.d("edtZipCode", "wywalilo");
-                    Response<UserModel> userModelResponse = dataBaseService.createUser(edtFirstName.getText().toString(),
-                            edtLastName.getText().toString(),
-                            edtEmail.getText().toString(),
-                            Integer.parseInt(edtZipCode.getText().toString())).execute();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }*/
                 Call<UserModel> call = dataBaseService.createUser(
                         Objects.requireNonNull(binding.textInputLayoutFirstName.getEditText()).getText().toString(),
                         Objects.requireNonNull(binding.textInputLayoutLastName.getEditText()).getText().toString(),
