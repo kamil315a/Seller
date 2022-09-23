@@ -1,6 +1,7 @@
 package com.example.seller.network;
 
 import com.example.seller.my_interface.DataBaseService;
+import com.google.gson.Gson;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

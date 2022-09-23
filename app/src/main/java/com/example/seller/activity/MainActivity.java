@@ -60,13 +60,11 @@ class MainActivity extends AppCompatActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }*/
-                //INPUT VALIDATION NEEDED
-
                 Call<UserModel> call = dataBaseService.createUser(
-                        Objects.requireNonNull(binding.edtFirstName.getText()).toString(),
-                        Objects.requireNonNull(binding.edtLastName.getText()).toString(),
-                        Objects.requireNonNull(binding.edtEmail.getText()).toString(),
-                        Objects.requireNonNull(binding.edtZipCode.getText()).toString());
+                        Objects.requireNonNull(binding.textInputLayoutFirstName.getEditText()).getText().toString(),
+                        Objects.requireNonNull(binding.textInputLayoutLastName.getEditText()).getText().toString(),
+                        Objects.requireNonNull(binding.textInputLayoutEmail.getEditText()).getText().toString(),
+                        Objects.requireNonNull(binding.textInputLayoutZipCode.getEditText()).getText().toString());
 
                 call.enqueue(new Callback<UserModel>() {
                     @Override
@@ -82,7 +80,7 @@ class MainActivity extends AppCompatActivity {
                     public
                     void onFailure(Call<UserModel> call, Throwable t)
                         {
-                        Toast.makeText(MainActivity.this, "onFailure message: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "onFailure message: " + t.getMessage(), Toast.LENGTH_LONG).show();
                         }
                 });
                 }
