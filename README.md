@@ -1,7 +1,7 @@
 # Seller
 
 
-Seller - robocza nazwa projektuSeller - robocza nazwa projektu
+Seller - robocza nazwa projektu Seller - robocza nazwa projektu
 cze 2022 – obecniecze 2022 – obecnie
 Pokaż projekt
 Aplikacja oparta jest na 4 filarach:
