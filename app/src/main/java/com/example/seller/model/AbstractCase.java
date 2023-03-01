@@ -1,7 +1,7 @@
 package com.example.seller.model;
 
 public
-class Case {
+abstract class AbstractCase {
 
     //Field
     Integer mCaseId;
@@ -13,7 +13,7 @@ class Case {
 
 
     public
-    Case(Integer mCaseId , String mCaseCompany , String mCaseName , String mCaseDescription , Integer mCounter)
+    AbstractCase(Integer mCaseId , String mCaseCompany , String mCaseName , String mCaseDescription , Integer mCounter)
         {
         this.mCaseId          = mCaseId;
         this.mCaseCompany     = mCaseCompany;
