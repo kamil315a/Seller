@@ -19,3 +19,6 @@ interface DataBaseService {
         @Field("userZipcode") String userZipcode);
 
 }
+
+
+
