@@ -1,33 +1,49 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_gravity="center"
+    android:layout_width="200dp"
+    android:layout_height="200dp"
+    app:cardElevation="16dp"
+    app:cardUseCompatPadding="true"
+    app:cardCornerRadius="4dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#55AAFF">
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/case_id"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="case_id" />
 
     <TextView
         android:id="@+id/case_company"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="case_company" />
 
     <TextView
         android:id="@+id/case_name"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="case_name" />
 
     <TextView
         android:id="@+id/case_description"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="case_description" />
 
     <TextView
         android:id="@+id/case_Counter"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="case_Counter" />
 
 </com.google.android.material.card.MaterialCardView>
 
