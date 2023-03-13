@@ -12,9 +12,13 @@ import com.example.seller.databinding.ActivityMainBinding;
 import com.example.seller.model.UserModel;
 import com.example.seller.my_interface.DataBaseService;
 import com.example.seller.network.RetrofitInstance;
+import com.google.android.gms.wallet.PaymentsClient;
+import com.google.android.gms.wallet.Wallet;
+import com.google.android.gms.wallet.WalletConstants;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.nio.file.Watchable;
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -27,6 +31,7 @@ public
 class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
+    private PaymentsClient paymentsClient;
 
     @Override
     protected
@@ -74,5 +79,11 @@ class MainActivity extends AppCompatActivity {
                 });
                 }
         });
+
+        Wallet.WalletOptions walletOptions =
+                new Wallet.WalletOptions.Builder()
+                        .setEnvironment(WalletConstants.ENVIRONMENT_TEST)
+                        .build();
+        paymentsClient = Wallet.getPaymentsClient(this, walletOptions);
         }
 }
