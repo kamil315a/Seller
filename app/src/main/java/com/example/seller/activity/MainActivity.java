@@ -1,5 +1,6 @@
 package com.example.seller.activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -12,11 +13,18 @@ import com.example.seller.databinding.ActivityMainBinding;
 import com.example.seller.model.UserModel;
 import com.example.seller.my_interface.DataBaseService;
 import com.example.seller.network.RetrofitInstance;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.gms.wallet.IsReadyToPayRequest;
 import com.google.android.gms.wallet.PaymentsClient;
 import com.google.android.gms.wallet.Wallet;
 import com.google.android.gms.wallet.WalletConstants;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.nio.file.Watchable;
 import java.util.Objects;
@@ -42,7 +50,7 @@ class MainActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
-/*        final String zipCodeValidationRegex = "^\\d{5}$";
+/*      final String zipCodeValidationRegex = "^\\d{5}$";
         Pattern pattern = Pattern.compile(zipCodeValidationRegex);
         Matcher matcher = pattern.matcher(edtZipCode.getText().toString());*/
 
@@ -85,5 +93,46 @@ class MainActivity extends AppCompatActivity {
                         .setEnvironment(WalletConstants.ENVIRONMENT_TEST)
                         .build();
         paymentsClient = Wallet.getPaymentsClient(this, walletOptions);
+
+        IsReadyToPayRequest readyToPayRequest = IsReadyToPayRequest.fromJson(baseConfigurationJson().toString());
+
+
+        Task<Boolean> task = paymentsClient.isReadyToPay(readyToPayRequest);
+        task.addOnCompleteListener(this , new OnCompleteListener<Boolean>() {
+            @Override
+            public
+            void onComplete(@NonNull Task<Boolean> task)
+                {
+                    if (task.isSuccessful()) {
+                        showGooglePayButton(task.getResult());
+                    } else {
+
+                    }
+                }
+        });
+
+
+
+        }
+
+    private
+    void showGooglePayButton(Boolean userIssReadyToPay)
+        {
+            if(userIssReadyToPay) {
+
+            }else {
+
+            }
+        }
+
+    private
+    static
+    JSONObject baseConfigurationJson() throws JSONException
+        {
+            return new JSONObject()
+                    .put("apiVersion", 2)
+                    .put("apiVersionMinor", 0)
+                    .put("allowedPaymentMethods",
+                            new JSONArray().put(getCardPaymentMethod()));
         }
 }
