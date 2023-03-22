@@ -15,7 +15,9 @@ import com.example.seller.my_interface.DataBaseService;
 import com.example.seller.network.RetrofitInstance;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.gms.wallet.AutoResolveHelper;
 import com.google.android.gms.wallet.IsReadyToPayRequest;
+import com.google.android.gms.wallet.PaymentDataRequest;
 import com.google.android.gms.wallet.PaymentsClient;
 import com.google.android.gms.wallet.Wallet;
 import com.google.android.gms.wallet.WalletConstants;
@@ -106,23 +108,9 @@ class MainActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         showGooglePayButton(task.getResult());
                     } else {
-
                     }
                 }
         });
-
-
-
-        }
-
-    private
-    void showGooglePayButton(Boolean userIssReadyToPay)
-        {
-            if(userIssReadyToPay) {
-
-            }else {
-
-            }
         }
 
     private
@@ -135,4 +123,26 @@ class MainActivity extends AppCompatActivity {
                     .put("allowedPaymentMethods",
                             new JSONArray().put(getCardPaymentMethod()));
         }
+        private void showGooglePayButton(boolean userIsReadyToPay) {
+        if(userIsReadyToPay) {
+
+        } else {
+            //Google Pay is not supported. Do not show the button.
+        }
+        }
+        private static JSONObject getCardPaymentMethod() {
+        final String[] networks = new String[] {"VISA", "AMEX"};
+        final String[] authMethods =
+                new String[] {"PAN_ONLY", "CRYPTOGRAM_3DS"};
+
+        JSONObject card = new JSONObject();
+        card.put("type", "CARD");
+        card.put("tokenizationSpecification", getTokenizationSpec());
+        card.put("parameters", new JSONObject())
+                .put("allowedAuthMethods", new JSONArray(authMethods))
+                .put("allowedCardNetworks", new JSONArray(networks));
+
+        return card;
+    }
+
 }
