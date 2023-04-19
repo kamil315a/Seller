@@ -11,11 +11,17 @@ import retrofit2.http.POST;
 
 public
 interface DataBaseService {
+
     @FormUrlEncoded
     @POST("insert.php/")
     Call<UserModel> createUser(@Field("firstname") String firstname,
         @Field("lastname") String lastname,
         @Field("userEmail") String userEmail,
-        @Field("userZipcode") Integer userZipcode);
-
+        @Field("userZipcode") String userZipcode);
+/*
+    @GET("insert.php/")
+    Call<UserModel> editUser()*/
 }
+
+
+

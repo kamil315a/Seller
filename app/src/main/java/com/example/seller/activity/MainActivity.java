@@ -3,55 +3,45 @@ package com.example.seller.activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.seller.R;
+import com.example.seller.databinding.ActivityMainBinding;
 import com.example.seller.model.UserModel;
 import com.example.seller.my_interface.DataBaseService;
 import com.example.seller.network.RetrofitInstance;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
-import java.io.IOException;
-import java.lang.invoke.MethodHandle;
-import java.lang.reflect.Method;
+import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-import okhttp3.Request;
-import okio.Timeout;
 import retrofit2.Call;
-import retrofit2.CallAdapter;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.http.PUT;
 
 public
 class MainActivity extends AppCompatActivity {
 
-
-    EditText edtFirstName = null;
-    EditText edtLastName = null;
-    EditText edtEmail = null;
-    EditText edtZipCode = null;
-    Button btnConfirm = null;
+    private ActivityMainBinding binding;
 
     @Override
     protected
     void onCreate(Bundle savedInstanceState)
         {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
 
-        edtFirstName = findViewById(R.id.edtFirstName);
-        edtLastName = findViewById(R.id.edtLastName);
-        edtEmail    = findViewById(R.id.edtEmail);
-        edtZipCode  = findViewById(R.id.edtZipCode);
-        btnConfirm  = findViewById(R.id.btnConfirm);
+/*        final String zipCodeValidationRegex = "^\\d{5}$";
+        Pattern pattern = Pattern.compile(zipCodeValidationRegex);
+        Matcher matcher = pattern.matcher(edtZipCode.getText().toString());*/
 
-
-        btnConfirm.setOnClickListener(new View.OnClickListener() {
+        binding.btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public
             void onClick(View view)
@@ -59,23 +49,12 @@ class MainActivity extends AppCompatActivity {
 
                 DataBaseService dataBaseService = RetrofitInstance.getRetrofit().create(DataBaseService.class);
 
-
-/*                try {
-                    Toast.makeText(MainActivity.this, ""+edtZipCode, Toast.LENGTH_SHORT).show();
-                    Log.d("edtZipCode", "wywalilo");
-                    Response<UserModel> userModelResponse = dataBaseService.createUser(edtFirstName.getText().toString(),
-                            edtLastName.getText().toString(),
-                            edtEmail.getText().toString(),
-                            Integer.parseInt(edtZipCode.getText().toString())).execute();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }*/
-
+                Toast.makeText(MainActivity.this, "" + Objects.requireNonNull(binding.textInputLayoutEmail.getEditText()).getText().toString(), Toast.LENGTH_SHORT).show();
                 Call<UserModel> call = dataBaseService.createUser(
-                        edtFirstName.getText().toString(),
-                        edtLastName.getText().toString(),
-                        edtEmail.getText().toString(),
-                        Integer.valueOf(edtZipCode.getText().toString()));
+                        Objects.requireNonNull(binding.textInputLayoutFirstName.getEditText()).getText().toString(),
+                        Objects.requireNonNull(binding.textInputLayoutLastName.getEditText()).getText().toString(),
+                        Objects.requireNonNull(binding.textInputLayoutEmail.getEditText()).getText().toString(),
+                        Objects.requireNonNull(binding.textInputLayoutZipCode.getEditText()).getText().toString());
 
                 call.enqueue(new Callback<UserModel>() {
                     @Override
@@ -84,24 +63,16 @@ class MainActivity extends AppCompatActivity {
                         {
 
                             Toast.makeText(MainActivity.this, "onResponse code: " + response.code(), Toast.LENGTH_SHORT).show();
-
                         }
 
                     @Override
                     public
                     void onFailure(Call<UserModel> call, Throwable t)
                         {
-                        Toast.makeText(MainActivity.this, "onFailure message: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "onFailure message: " + t.getMessage(), Toast.LENGTH_LONG).show();
                         }
                 });
-
                 }
-
-
-
-
         });
-
-
         }
 }
